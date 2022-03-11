@@ -2,6 +2,7 @@
 
 namespace ATStudio\TranslationManager;
 
+use ATStudio\TranslationManager\Commands\ScanFiles;
 use Illuminate\Support\ServiceProvider;
 
 class TranslationManagerServiceProvider extends ServiceProvider
@@ -11,9 +12,29 @@ class TranslationManagerServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->registerConfig();
+        $this->registerCommands();
         $this->registerRoutes();
         $this->registerViews();
         $this->publishAssets();
+    }
+
+    private function registerConfig(): void
+    {
+        $this->publishes([
+            __DIR__.'/../config/tm.php' => config_path('tm.php'),
+        ], 'tm-config');
+
+        $this->mergeConfigFrom(__DIR__.'/../config/tm.php', 'tm');
+    }
+
+    private function registerCommands(): void
+    {
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                ScanFiles::class,
+            ]);
+        }
     }
 
     private function registerRoutes(): void
