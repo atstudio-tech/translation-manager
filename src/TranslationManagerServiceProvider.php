@@ -33,7 +33,7 @@ class TranslationManagerServiceProvider extends ServiceProvider
     private function publishAssets(): void
     {
         $this->publishes([
-            __DIR__.'/../public/css' => public_path('css/translation-manager'),
+            __DIR__.'/../public' => public_path('vendor/translation-manager'),
         ], 'tm-assets');
     }
 }
