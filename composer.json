@@ -1,0 +1,40 @@
+{
+    "name": "atstudio-tech/translation-manager",
+    "description": "GUI for scanning and managing your Laravel translations.",
+    "keywords": ["laravel", "translations", "manager", "i18n"],
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0|^8.1",
+        "illuminate/contracts": "^9.4"
+    },
+    "require-dev": {
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.2",
+        "orchestra/testbench": "^7.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "ATStudio\\TranslationManager\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "ATStudio\\TranslationManager\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "ATStudio\\TranslationManager\\TranslationManagerServiceProvider"
+            ]
+        }
+    }
+}
