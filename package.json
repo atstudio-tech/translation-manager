@@ -1,0 +1,32 @@
+{
+    "name": "i18n-manager",
+    "version": "1.0.0",
+    "description": "About GUI for scanning and managing your Laravel translations.",
+    "main": "webpack.mix.js",
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.2",
+        "axios": "^0.25",
+        "laravel-mix": "^6.0",
+        "postcss": "^8.4.8",
+        "tailwindcss": "^3.0.23"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/atstudio-tech/i18n-manager.git"
+    },
+    "keywords": [],
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/atstudio-tech/i18n-manager/issues"
+    },
+    "homepage": "https://github.com/atstudio-tech/i18n-manager#readme"
+}
