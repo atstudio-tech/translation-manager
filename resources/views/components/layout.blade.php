@@ -22,8 +22,8 @@
         <i class="fa-solid fa-language text-3xl text-teal-500 mr-4"></i>
         <h1 class="text-slate-700 text-3xl font-raleway"><span class="font-bold">Translation</span> Manager</h1>
 
-        <button class="ml-auto px-4 py-2 uppercase text-teal-50 inline-flex gap-3 items-center bg-teal-500 shadow-md rounded-full font-semibold text-sm tracking-wider transition duration-300 hover:bg-teal-600">
-            <i class="fa-solid fa-rotate text-teal-700"></i>
+        <button class="ml-auto px-4 py-2 uppercase text-teal-50 inline-flex gap-3 items-center bg-teal-500 shadow-md rounded-full font-semibold text-sm tracking-wider transition duration-300 hover:bg-teal-600 group">
+            <i class="fa-solid fa-rotate transition duration-300 text-teal-700 group-hover:text-teal-800"></i>
             Scan Files
         </button>
     </header>
