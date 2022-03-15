@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		font-family: Inter, 'Helvetica Neue', sans-serif;
+	}
+}
+
+@layer utilities {
+	.font-raleway {
+		font-family: 'Raleway', Inter, 'Helvetica Neue', sans-serif;
+	}
+}
