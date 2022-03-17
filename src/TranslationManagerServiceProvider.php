@@ -3,7 +3,9 @@
 namespace ATStudio\TranslationManager;
 
 use ATStudio\TranslationManager\Commands\ScanFiles;
+use ATStudio\TranslationManager\Livewire\ListTranslations;
 use Illuminate\Support\ServiceProvider;
+use Livewire\Livewire;
 
 class TranslationManagerServiceProvider extends ServiceProvider
 {
@@ -17,6 +19,8 @@ class TranslationManagerServiceProvider extends ServiceProvider
         $this->registerRoutes();
         $this->registerViews();
         $this->publishAssets();
+
+        Livewire::component('tm::translations-index', ListTranslations::class);
     }
 
     private function registerConfig(): void
