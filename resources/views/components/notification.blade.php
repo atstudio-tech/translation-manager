@@ -1,4 +1,4 @@
-<div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start" x-data>
+<div aria-live="assertive" class="fixed inset-0 flex items-end px-4 py-6 pointer-events-none sm:p-6 sm:items-start" x-data x-cloak>
     <div class="w-full flex flex-col items-center space-y-4 sm:items-end">
         <div
             x-show="$wire.feedback.exists"

@@ -16,37 +16,40 @@
         <div class="hidden sm:block">
             <div class="border-b border-slate-200">
                 <nav class="-mb-px flex space-x-4 pl-8" aria-label="Tabs">
-                    <!-- Current: "border-teal-500 text-teal-600", Default: "border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-200" -->
-                    <a href="#" class="border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-200 whitespace-nowrap flex p-4 border-b-2 font-medium text-sm">
+                    <a
+                        href="?tab=all"
+                        class="{{ $this->isSelectedTab('all') ? 'border-teal-500 text-teal-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-200' }} whitespace-nowrap flex p-4 border-b-2 font-medium text-sm"
+                        wire:click.prevent="goToTab('all')"
+                    >
                         All
 
-                        <!-- Current: "bg-teal-100 text-teal-600", Default: "bg-slate-100 text-slate-900" -->
-                        <span class="bg-slate-100 text-slate-900 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">52</span>
+                        <span class="{{ $this->isSelectedTab('all') ? 'bg-teal-100 text-teal-600' : 'bg-slate-100 text-slate-900' }} hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">{{ $allTranslations->count() }}</span>
                     </a>
 
-                    <a href="#" class="border-teal-500 text-teal-600 whitespace-nowrap flex p-4 border-b-2 font-medium text-sm" aria-current="page">
+                    <a
+                        href="?tab=missing"
+                        class="{{ $this->isSelectedTab('missing') ? 'border-teal-500 text-teal-600' : 'border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-200' }} whitespace-nowrap flex p-4 border-b-2 font-medium text-sm"
+                        wire:click.prevent="goToTab('missing')"
+                    >
                         Missing
 
-                        <span class="bg-teal-100 text-teal-600 hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">4</span>
+                        <span class="{{ $this->isSelectedTab('missing') ? 'bg-teal-100 text-teal-600' : 'bg-slate-100 text-slate-900' }} hidden ml-3 py-0.5 px-2.5 rounded-full text-xs font-medium md:inline-block">{{ $missingTranslations->count() }}</span>
                     </a>
                 </nav>
             </div>
         </div>
     </header>
 
-    <ul class="p-8">
-        <pre>{{ print_r($translations) }}</pre>
-
+    <ul id="missing" class="p-8">
         @foreach ($translations as $default => $translation)
             <li class="group">
                 <label class="grid grid-cols-2 gap-3 items-center">
                     <span class="bg-slate-50 group-first:rounded-t-md group-last:rounded-b-md px-4 py-3 text-[13px] tracking-wider">
-                        {{ $default }}
+                        {{ $this->escapeDots($default) }}
                     </span>
                     <div>
                         <input
                             type="text"
-                            name="translations[{{ $default }}]"
                             class="border border-slate-200 transition duration-300 flex w-full px-4 py-2 rounded focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500 shadow-inner text-sm font-light"
                             placeholder="{{ $translation ? null : 'To be translated...' }}"
                             value="{{ $translation }}"
@@ -56,6 +59,12 @@
                 </label>
             </li>
         @endforeach
+
+        @if (count($translations) === 0)
+            <i class="font-italic">
+                {{ $currentTab === 'missing' ? 'All done!' : 'No translations have been extracted.' }}
+            </i>
+        @endif
     </ul>
 
     <footer class="px-8 py-4 bg-slate-50 rounded-b-md">

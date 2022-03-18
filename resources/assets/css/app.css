@@ -6,6 +6,10 @@
 	body {
 		font-family: Inter, 'Helvetica Neue', sans-serif;
 	}
+
+	[x-cloak] {
+		@apply hidden !important;
+	}
 }
 
 @layer utilities {
