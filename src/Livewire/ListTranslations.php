@@ -3,6 +3,7 @@
 namespace ATStudio\TranslationManager\Livewire;
 
 use ATStudio\TranslationManager\Traits\HasFeedback;
+use ATStudio\TranslationManager\Traits\HasMenu;
 use ATStudio\TranslationManager\Traits\HasTabs;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -11,6 +12,7 @@ use Livewire\Component;
 class ListTranslations extends Component
 {
     use HasFeedback;
+    use HasMenu;
     use HasTabs;
 
     public Collection $allTranslations;
@@ -21,12 +23,9 @@ class ListTranslations extends Component
 
     public function mount()
     {
-        $this->prefillTab();
-
-        $this->allTranslations = collect(json_decode(File::get(lang_path('fr.json')), associative: true))->mapWithKeys([$this, 'replaceDots']);
-
-        $this->missingTranslations = $this->allTranslations->filter(fn(?string $translation) => !$translation);
-        $this->translations = $this->isSelectedTab('missing') ? $this->missingTranslations : $this->allTranslations;
+        $this->menu = $this->fetchLocales();
+        $this->changeLocale($this->defaultLocale());
+        $this->goToAll();
     }
 
     public function save()
@@ -39,7 +38,7 @@ class ListTranslations extends Component
             $translations = $this->allTranslations->merge($translations);
         }
 
-        File::put(lang_path('fr.json'), json_encode(collect($translations)->mapWithKeys([$this, 'replaceDots'])->toArray()));
+        File::put($this->langFile(), json_encode(collect($translations)->mapWithKeys([$this, 'replaceDots'])->toArray()));
 
         $this->addFeedback('Successfully Saved!', 'Translations have been saved in the language file.');
     }
@@ -47,6 +46,27 @@ class ListTranslations extends Component
     public function render()
     {
         return view('tm::livewire.list-translations')->layout('tm::components.layout');
+    }
+
+    public function changeLocale(string $locale): void
+    {
+        $this->currentLocale = $locale;
+
+        $this->allTranslations = $this->fetchTranslations();
+        $this->missingTranslations = $this->fetchMissingTranslations();
+        $this->translations = $this->isSelectedTab('all') ? $this->allTranslations : $this->missingTranslations;
+    }
+
+    public function goToAll(): void
+    {
+        $this->currentTab = 'all';
+        $this->translations = $this->fetchTranslations();
+    }
+
+    public function goToMissing(): void
+    {
+        $this->currentTab = 'missing';
+        $this->translations = $this->fetchMissingTranslations();
     }
 
     public function escapeDots(string $text): string
@@ -63,5 +83,20 @@ class ListTranslations extends Component
         return [
             $this->escapeDots($key) => $value,
         ];
+    }
+
+    protected function fetchTranslations(): Collection
+    {
+        return collect(json_decode(File::get($this->langFile()), associative: true))->mapWithKeys([$this, 'replaceDots']);
+    }
+
+    protected function fetchMissingTranslations(): Collection
+    {
+        return $this->fetchTranslations()->filter(fn(?string $translation) => !$translation);
+    }
+
+    protected function langFile(): string
+    {
+        return lang_path($this->currentLocale.'.json');
     }
 }

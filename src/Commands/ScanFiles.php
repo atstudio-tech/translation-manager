@@ -31,7 +31,7 @@ class ScanFiles extends Command
      */
     protected function availableLocales(): array
     {
-        $locales = config('tm.locales');
+        $locales = array_keys(config('tm.locales'));
         $key = array_search(config('app.fallback_locale'), $locales);
 
         if ($key !== false) {

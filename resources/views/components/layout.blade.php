@@ -30,29 +30,7 @@
         </button>
     </header>
 
-    <div class="flex gap-5 mt-10">
-        <aside class="w-72">
-            <nav class="space-y-2">
-                <span class="px-3 py-2 rounded text-slate-800 dark:text-slate-50 flex items-center opacity-30">
-                    English
-
-                    <span class="ml-auto rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px] uppercase">Default</span>
-                </span>
-                <a class="px-3 py-2 rounded text-slate-800 dark:text-slate-300 flex items-center transition duration-300 bg-black/[.02] dark:bg-white/[.03]" href="#">
-                    <i class="fa-solid fa-circle text-teal-600 text-[8px] mr-2"></i>
-
-                    French
-                </a>
-                <a class="px-3 py-2 rounded text-slate-800 dark:text-slate-300 flex items-center transition duration-300 hover:bg-black/[.03] dark:hover:bg-white/[.05]" href="#">
-                    Russian
-                </a>
-            </nav>
-        </aside>
-
-        <main class="flex-1 bg-white dark:bg-slate-700 rounded-md shadow">
-            {{ $slot }}
-        </main>
-    </div>
+    {{ $slot }}
 </div>
 
 @livewireScripts

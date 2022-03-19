@@ -4,6 +4,7 @@ namespace ATStudio\TranslationManager;
 
 use ATStudio\TranslationManager\Commands\ScanFiles;
 use ATStudio\TranslationManager\Livewire\ListTranslations;
+use ATStudio\TranslationManager\Livewire\Menu;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 
