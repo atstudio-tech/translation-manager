@@ -36,9 +36,9 @@
 
             <ul id="missing" class="p-8">
                 @foreach ($translations as $default => $translation)
-                    <li class="group">
-                        <label class="grid grid-cols-2 gap-3 items-center">
-                            <span class="bg-slate-50 dark:bg-slate-600 text-slate-800 dark:text-slate-50 group-first:rounded-t-md group-last:rounded-b-md px-4 py-3 text-[13px] tracking-wider">
+                    <li class="group pl-4 pr-2 py-1.5 {{ $loop->even ? 'bg-slate-50 dark:bg-slate-600 rounded-md' : '' }}">
+                        <label class="grid grid-cols-2 items-center">
+                            <span class="text-slate-800 dark:text-slate-50 text-[13px] tracking-wider">
                                 {{ $this->escapeDots($default) }}
                             </span>
                             <div>
