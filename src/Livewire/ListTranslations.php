@@ -87,6 +87,10 @@ class ListTranslations extends Component
 
     protected function fetchTranslations(): Collection
     {
+        if (!File::exists($this->langFile())) {
+            return collect([]);
+        }
+
         return collect(json_decode(File::get($this->langFile()), associative: true))->mapWithKeys([$this, 'replaceDots']);
     }
 

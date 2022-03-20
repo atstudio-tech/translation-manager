@@ -44,7 +44,7 @@
                             <div>
                                 <input
                                     type="text"
-                                    class="border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-400 transition duration-300 flex w-full px-4 py-2 rounded focus:outline-none focus:border-teal-500 dark:focus:border-teal-200 focus:ring-1 focus:ring-teal-500 dark:focus:ring-teal-200 shadow-inner text-sm font-light text-slate-800 dark:text-white"
+                                    class="border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-400 transition duration-300 flex w-full px-4 py-2 rounded focus:outline-none focus:border-teal-500 dark:focus:border-teal-200 focus:ring-1 focus:ring-teal-500 dark:focus:ring-teal-200 shadow-inner text-sm font-light text-slate-800 dark:text-white dark:placeholder-slate-600"
                                     placeholder="{{ $translation ? null : 'To be translated...' }}"
                                     value="{{ $translation }}"
                                     wire:model.defer="translations.{{ $default }}"

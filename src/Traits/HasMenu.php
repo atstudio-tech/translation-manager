@@ -8,7 +8,7 @@ trait HasMenu
 
     public string $currentLocale = '';
 
-    public function isFallback(string $locale): bool
+    public function isSource(string $locale): bool
     {
         return $locale === config('app.locale');
     }
@@ -27,6 +27,6 @@ trait HasMenu
     {
         return collect($this->menu)
             ->keys()
-            ->first(fn(string $locale) => !$this->isFallback($locale));
+            ->first(fn(string $locale) => !$this->isSource($locale));
     }
 }

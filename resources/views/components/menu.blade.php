@@ -1,11 +1,11 @@
 <aside class="w-72">
     <nav class="space-y-2">
         @foreach ($menu as $locale => $lang)
-            @if ($this->isFallback($locale))
+            @if ($this->isSource($locale))
                 <span class="px-3 py-2 rounded text-slate-800 dark:text-slate-50 flex items-center opacity-30">
                     {{ $lang }}
 
-                    <span class="ml-auto rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px] uppercase">Fallback</span>
+                    <span class="ml-auto rounded bg-slate-200 px-2 py-0.5 text-slate-800 text-[11px] uppercase">Source</span>
                 </span>
 
                 @continue
