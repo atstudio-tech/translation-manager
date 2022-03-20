@@ -15,5 +15,7 @@ class ScanAction extends Component
     public function scan()
     {
         TranslationManager::scan();
+
+        session()->flash('scan.completed', 'Files have been scanned.');
     }
 }
