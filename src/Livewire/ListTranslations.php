@@ -38,7 +38,10 @@ class ListTranslations extends Component
             $translations = $this->allTranslations->merge($translations);
         }
 
-        File::put($this->langFile(), json_encode(collect($translations)->mapWithKeys([$this, 'replaceDots'])->toArray()));
+        File::put(
+            $this->langFile(),
+            json_encode(collect($translations)->mapWithKeys([$this, 'replaceDots'])->toArray(), JSON_UNESCAPED_UNICODE),
+        );
 
         $this->addFeedback('Successfully Saved!', 'Translations have been saved in the language file.');
     }
