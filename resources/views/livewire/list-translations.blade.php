@@ -36,20 +36,19 @@
 
             <ul id="missing" class="p-8">
                 @foreach ($translations as $default => $translation)
-                    <li class="group pl-4 pr-2 py-1.5 {{ $loop->even ? 'bg-slate-50 dark:bg-slate-600 rounded-md' : '' }}">
-                        <label class="grid grid-cols-2 items-center">
+                    <li class="group pl-4 pr-2 py-2.5 {{ $loop->even ? 'bg-slate-50 dark:bg-slate-600 rounded-md' : '' }}">
+                        <label class="grid grid-cols-2 items-center gap-3">
                             <span class="text-slate-800 dark:text-slate-50 text-[13px] tracking-wider">
                                 {{ $this->escapeDots($default) }}
                             </span>
-                            <div>
-                                <input
-                                    type="text"
-                                    class="border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-400 transition duration-300 flex w-full px-4 py-2 rounded focus:outline-none focus:border-teal-500 dark:focus:border-teal-200 focus:ring-1 focus:ring-teal-500 dark:focus:ring-teal-200 shadow-inner text-sm font-light text-slate-800 dark:text-white dark:placeholder-slate-600"
-                                    placeholder="{{ $translation ? null : 'To be translated...' }}"
-                                    value="{{ $translation }}"
-                                    wire:model.defer="translations.{{ $default }}"
-                                />
-                            </div>
+                            <textarea
+                                type="text"
+                                class="border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-400 transition duration-300 flex w-full px-4 py-2 rounded focus:outline-none focus:border-teal-500 dark:focus:border-teal-200 focus:ring-1 focus:ring-teal-500 dark:focus:ring-teal-200 shadow-inner text-sm font-light text-slate-800 dark:text-white dark:placeholder-slate-600 h-full resize-y min-h-[2.375rem]"
+                                placeholder="{{ $translation ? null : 'To be translated...' }}"
+                                value="{{ $translation }}"
+                                wire:model.defer="translations.{{ $default }}"
+                                rows="1"
+                            ></textarea>
                         </label>
                     </li>
                 @endforeach

@@ -1,2 +1,4 @@
-# lara-i18n
-About GUI for scanning and managing your Laravel translations.
+# Translation Manager
+
+GUI for scanning and managing your Laravel translations.
+
