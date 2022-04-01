@@ -51,6 +51,20 @@ Click on the "Scan Files" button in the package's dashboard to scan folders for 
 
 > You may change the list of folders to scan by customizing the config at `/config/tm.php`.
 
+This process will create or override language files in the `/lang` directory.
+
+e.g. It will create `/lang/fr.json` and `/lang/es.json` if your `tm.locales` configuration is as follows:
+
+```php
+[
+    'en' => 'English',
+    'fr' => 'Français',
+    'es' => 'Español',
+];
+```
+
+Locale specified in `app.fallback_locale` is set as the default language thus its language file is not created.
+
 ## Changelog
 
 The [CHANGELOG](CHANGELOG.md) file will tell you about all changes to this package.
