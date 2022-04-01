@@ -20,9 +20,9 @@ class ManagerController
         return $this->allTranslations();
     }
 
-    public function store()
+    public function store(TranslationManager $manager)
     {
-        TranslationManager::scan();
+        $manager->scan();
 
         return response([
             'message' => 'All translations have been extracted...',

@@ -2,9 +2,7 @@
 
 namespace ATStudio\TranslationManager\Controllers;
 
-use App\Http\Controllers\Controller;
-
-class MenuController extends Controller
+class MenuController
 {
     public function index()
     {

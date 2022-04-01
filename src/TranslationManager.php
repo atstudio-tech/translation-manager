@@ -8,21 +8,21 @@ use Symfony\Component\Finder\SplFileInfo;
 
 class TranslationManager
 {
-    public static function scan(): void
+    public function scan(): void
     {
-        $locales = static::availableLocales();
-        $extracted = static::extractTranslations();
+        $locales = $this->availableLocales();
+        $extracted = $this->extractTranslations();
 
         foreach ($locales as $locale) {
-            $contents = static::existingTranslations($locale);
-            static::storeTranslations($extracted, $locale, $contents);
+            $contents = $this->existingTranslations($locale);
+            $this->storeTranslations($extracted, $locale, $contents);
         }
     }
 
     /**
      * Get a list of available locales.
      */
-    protected static function availableLocales(): array
+    protected function availableLocales(): array
     {
         $locales = array_keys(config('tm.locales'));
         $key = array_search(config('app.fallback_locale'), $locales);
@@ -37,10 +37,10 @@ class TranslationManager
     /**
      * Extract translation strings from scanned files.
      */
-    protected static function extractTranslations(): Collection
+    protected function extractTranslations(): Collection
     {
         $foldersToScan = config('tm.folders');
-        $files = static::files($foldersToScan);
+        $files = $this->files($foldersToScan);
         $strings = collect([]);
 
         foreach ($files as $file) {
@@ -59,7 +59,7 @@ class TranslationManager
      *
      * @return array<SplFileInfo>
      */
-    protected static function files(array $foldersToScan): array
+    protected function files(array $foldersToScan): array
     {
         $files = [];
 
@@ -75,7 +75,7 @@ class TranslationManager
      *
      * @return array<string, string>
      */
-    protected static function existingTranslations(string $locale): array
+    protected function existingTranslations(string $locale): array
     {
         if (File::exists(static::langPath($locale))) {
             $contents = json_decode(File::get(static::langPath($locale)), true);
@@ -89,7 +89,7 @@ class TranslationManager
     /**
      * Return path to the language file.
      */
-    protected static function langPath(string $locale): string
+    protected function langPath(string $locale): string
     {
         return lang_path($locale.'.json');
     }
@@ -97,7 +97,7 @@ class TranslationManager
     /**
      * Update the language file with new translation strings.
      */
-    protected static function storeTranslations(Collection $extracted, string $locale, array $contents): void
+    protected function storeTranslations(Collection $extracted, string $locale, array $contents): void
     {
         $strings = $extracted->mapWithKeys(function (?string $item) use ($locale, $contents) {
             return [
