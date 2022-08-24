@@ -19,6 +19,21 @@ class TranslationManager
         }
     }
 
+    public function parse(string $text): array
+    {
+        $pattern = '/' .
+            '(?:__|Lang::(?:get|choice)|trans(?:_choice)?|@(?:lang|choice))\(' .
+            '([\'"])(.+?)\1' .
+            '/';
+        preg_match_all($pattern, $text, $matches);
+
+        if (!$matches[2]) return [];
+
+        $matches[2] = preg_replace('/\\\(["\'])/', '$1', $matches[2]);
+
+        return $matches[2];
+    }
+
     /**
      * Get a list of available locales.
      */
@@ -44,11 +59,7 @@ class TranslationManager
         $strings = collect([]);
 
         foreach ($files as $file) {
-            preg_match_all('/(?:__|trans(?:_choice)?|@(?:lang|choice))\([\'"](.+)[\'"][),]/', $file->getContents(), $matches);
-
-            if ($matches[1]) {
-                $strings = $strings->merge($matches[1]);
-            }
+            $strings = $strings->merge($this->parse($file->getContents()));
         }
 
         return $strings;

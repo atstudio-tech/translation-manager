@@ -2,7 +2,7 @@
 
 namespace ATStudio\TranslationManager\Commands;
 
-use ATStudio\TranslationManager\TranslationManager;
+use Facades\ATStudio\TranslationManager\TranslationManager;
 use Illuminate\Console\Command;
 
 class ScanFiles extends Command
