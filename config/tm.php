@@ -19,6 +19,7 @@ return [
         'sk' => 'Slovenčina',
     ],
 
+    // This is the locale that will be used as a source for all translations.
     'source_locale' => 'en',
 
     /*
