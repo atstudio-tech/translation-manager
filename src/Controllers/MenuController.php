@@ -19,6 +19,6 @@ class MenuController
 
     private function isSource(string $locale): bool
     {
-        return $locale === config('app.locale');
+        return $locale === config('tm.source_locale');
     }
 }

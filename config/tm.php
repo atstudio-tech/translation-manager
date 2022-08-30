@@ -7,8 +7,8 @@ return [
     | Locales
     |--------------------------------------------------------------------------
     |
-    | A list of available locales. These will be used for creating translation
-    | files.
+    | A list of available and source locales.
+    | These will be used for creating translation files.
     |
     */
 
@@ -18,6 +18,8 @@ return [
         'ru' => 'Русский',
         'sk' => 'Slovenčina',
     ],
+
+    'source_locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
