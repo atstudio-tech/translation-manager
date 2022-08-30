@@ -1,11 +1,7 @@
 <template>
-    <header>
-        <div class="border-b border-slate-200 dark:border-slate-800">
-            <nav class="-mb-px flex space-x-4 pl-8" aria-label="Tabs">
-                <slot />
-            </nav>
-        </div>
-    </header>
+    <nav class="-mb-px flex space-x-4" aria-label="Tabs">
+        <slot />
+    </nav>
 </template>
 
 <script setup>
