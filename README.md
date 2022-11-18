@@ -30,6 +30,7 @@ To customize package's configuration, run this command in your terminal:
 php artisan vendor:publish --tag="tm-config"
 ```
 
+
 ### Available Options
 
 ```php
