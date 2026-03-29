@@ -1,5 +1,17 @@
 # Translation Manager
 
+> This repository is no longer maintained.
+>
+> If you need a GUI translation manager, you can try [Lynguist.com](https://lynguist.com). Otherwise, these open-source packages are available:
+> 
+> [Laravel Lynguist](https://github.com/vixen-tech/laravel-lynguist): for scanning, merging and optionally uploading to Lynguist.com.
+> 
+> [Lynguist.js](https://github.com/vixen-tech/lynguist-js): a collection of Laravel-style helper functions for translating (e.g. `__`, `transChoice`, etc).
+> 
+> [Lynguist CLI](https://github.com/vixen-tech/lynguist-cli): a Node CLI tool that brings the same features as Laravel Lynguist but to JavaScript frameworks (e.g. Next.js, Vue.js etc).
+
+---
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/atstudio-tech/translation-manager.svg?style=flat-square)](https://packagist.org/packages/atstudio-tech/translation-manager)
 [![Total Downloads](https://img.shields.io/packagist/dt/atstudio-tech/translation-manager.svg?style=flat-square)](https://packagist.org/packages/atstudio-tech/translation-manager)
 
